@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include "../random.cpp"
+#include "random.cpp"
 
 using namespace std;
 
@@ -52,8 +52,6 @@ int main(){
     cout << endl;
     print_matrix(result, dimensions);
   }
-
-
 }
 
 void init_matrix(vector<vector<float> > &matrix, int dimensions) {
@@ -91,8 +89,7 @@ void generate_random_matrix(vector<vector<float> > &matrix, int dimensions) {
 }
 
 vector<vector<float> > matrix_multiply(vector<vector<float> > &A,
-                     vector<vector<float> > &B) {
-
+                                       vector<vector<float> > &B) {
    vector<vector<float> > result;
    init_matrix(result, A.size());
 
@@ -103,7 +100,6 @@ vector<vector<float> > matrix_multiply(vector<vector<float> > &A,
       }
     }
   }
-
   return result;
 
 }
