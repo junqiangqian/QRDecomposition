@@ -9,13 +9,13 @@
 using namespace std;
 
 /* VECTOR HELPER FUNCTIONS */
-void print_vector(vector<float> &vec);
-float vector_magnitude(vector<float> &vec);
-float vector_dot_product(vector<float> &vecA, vector<float> &vecB);
-vector<float> vector_add(vector<float> &vecA, vector<float> &vecB);
-vector<float> vector_sub(vector<float> &vecA, vector<float> &vecB);
-vector<float> vector_mul_scalar(vector<float> &vec, float scalar);
-vector<float> vector_div_scalar(vector<float> &vec, float scalar);
+void print_vector(vector<double> &vec);
+double vector_magnitude(vector<double> &vec);
+double vector_dot_product(vector<double> &vecA, vector<double> &vecB);
+vector<double> vector_add(vector<double> &vecA, vector<double> &vecB);
+vector<double> vector_sub(vector<double> &vecA, vector<double> &vecB);
+vector<double> vector_mul_scalar(vector<double> &vec, double scalar);
+vector<double> vector_div_scalar(vector<double> &vec, double scalar);
 /* VECTOR HELPER FUNCTIONS END */
 
 #endif

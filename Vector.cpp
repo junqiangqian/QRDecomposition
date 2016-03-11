@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void print_vector(vector<float> &vec) {
+void print_vector(vector<double> &vec) {
   cout << "(";
   for (int i = 0; i < vec.size(); i++) {
     i != vec.size() - 1? cout << vec[i] << ", " : cout << vec[i];
@@ -11,9 +11,9 @@ void print_vector(vector<float> &vec) {
 }
 
 
-float vector_magnitude(vector<float> &vec) {
+double vector_magnitude(vector<double> &vec) {
   int dimensions = vec.size();
-  float norm;
+  double norm;
 
   for (int i = 0; i < dimensions; i++) {
     norm += vec[i] * vec[i];
@@ -22,11 +22,11 @@ float vector_magnitude(vector<float> &vec) {
   return sqrt(norm);
 }
 
-float vector_dot_product(vector<float> &vecA, vector<float> &vecB) {
+double vector_dot_product(vector<double> &vecA, vector<double> &vecB) {
   assert (vecA.size() == vecB.size());
 
   int dimensions = vecA.size();
-  float dp;
+  double dp;
 
   for (int i = 0; i < dimensions; i++) {
     dp += (vecA[i] * vecB[i]);
@@ -35,10 +35,10 @@ float vector_dot_product(vector<float> &vecA, vector<float> &vecB) {
   return dp;
 }
 
-vector<float> vector_add(vector<float> &vecA, vector<float> &vecB) {
+vector<double> vector_add(vector<double> &vecA, vector<double> &vecB) {
   assert (vecA.size() == vecB.size());
 
-  vector<float> result;
+  vector<double> result;
   int dimensions = vecA.size();
 
   for (int i = 0; i < dimensions; i++) {
@@ -48,10 +48,10 @@ vector<float> vector_add(vector<float> &vecA, vector<float> &vecB) {
   return result;
 }
 
-vector<float> vector_sub(vector<float> &vecA, vector<float> &vecB) {
+vector<double> vector_sub(vector<double> &vecA, vector<double> &vecB) {
   assert (vecA.size() == vecB.size());
 
-  vector<float> negatedVecB;
+  vector<double> negatedVecB;
   int dimensions = vecA.size();
 
   for (int i = 0; i < dimensions; i++) {
@@ -61,8 +61,8 @@ vector<float> vector_sub(vector<float> &vecA, vector<float> &vecB) {
   return vector_add(vecA, negatedVecB);
 }
 
-vector<float> vector_mul_scalar(vector<float> &vec, float scalar) {
-  vector<float> result;
+vector<double> vector_mul_scalar(vector<double> &vec, double scalar) {
+  vector<double> result;
 
   for (int i = 0; i < vec.size(); i++) {
     result.push_back(scalar * vec[i]);
@@ -71,6 +71,6 @@ vector<float> vector_mul_scalar(vector<float> &vec, float scalar) {
   return result;
 }
 
-vector<float> vector_div_scalar(vector<float> &vec, float scalar) {
+vector<double> vector_div_scalar(vector<double> &vec, double scalar) {
   return vector_mul_scalar(vec, (1 / scalar));
 }

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void print_matrix(vector<vector<float> > &matrix) {
+void print_matrix(vector<vector<double> > &matrix) {
 
   int dimensions = matrix.size();
 
@@ -15,9 +15,9 @@ void print_matrix(vector<vector<float> > &matrix) {
   cout << endl;
 }
 
-void init_matrix(vector<vector<float> > &matrix, int dimensions) {
+void init_matrix(vector<vector<double> > &matrix, int dimensions) {
   for (int i = 0; i < dimensions; i++){
-    vector<float> row;
+    vector<double> row;
     for (int j = 0; j < dimensions; j++){
       row.push_back(0);
     }
@@ -25,9 +25,9 @@ void init_matrix(vector<vector<float> > &matrix, int dimensions) {
   }
 }
 
-vector<vector<float> > matrix_multiply(vector<vector<float> > &A,
-                                       vector<vector<float> > &B) {
-  vector<vector<float> > result;
+vector<vector<double> > matrix_multiply(vector<vector<double> > &A,
+                                       vector<vector<double> > &B) {
+  vector<vector<double> > result;
   init_matrix(result, A.size());
 
   for (int i = 0; i < A.size(); i++){
@@ -40,9 +40,9 @@ vector<vector<float> > matrix_multiply(vector<vector<float> > &A,
   return result;
 }
 
-vector<vector<float> > matrix_transpose(vector<vector<float> > &matrix) {
+vector<vector<double> > matrix_transpose(vector<vector<double> > &matrix) {
 
-  vector<vector<float> > transpose;
+  vector<vector<double> > transpose;
   int dimensions = matrix.size();
   init_matrix(transpose, dimensions);
 
@@ -62,12 +62,12 @@ vector<vector<float> > matrix_transpose(vector<vector<float> > &matrix) {
   return transpose;
 }
 
-vector<float> get_column_vector(vector<vector<float> > &matrix, int column) {
+vector<double> get_column_vector(vector<vector<double> > &matrix, int column) {
   assert (column < matrix[0].size());
 
   int dimensions = matrix.size();
 
-  vector<float> columnVector;
+  vector<double> columnVector;
 
   for (int i = 0; i < dimensions; i++){
     columnVector.push_back(matrix[i][column]);
@@ -76,12 +76,12 @@ vector<float> get_column_vector(vector<vector<float> > &matrix, int column) {
   return columnVector;
 }
 
-vector<float> get_row_vector(vector<vector<float> > &matrix, int row) {
+vector<double> get_row_vector(vector<vector<double> > &matrix, int row) {
   assert (row < matrix.size());
 
   int dimensions = matrix.size();
 
-  vector<float> rowVector;
+  vector<double> rowVector;
 
   for (int i = 0; i < dimensions; i++) {
     rowVector.push_back(matrix[row][i]);

@@ -9,17 +9,17 @@
 
 using namespace std;
 
-/* Generates random floats */
-float random_float(int limit);
+/* Generates random doubles */
+double random_double(int limit);
 
 /* MATRIX HELPER FUNCTIONS */
-void print_matrix(vector<vector<float> > &matrix);
-void init_matrix(vector<vector<float> > &matrix, int dimensions);
-vector<vector<float> > matrix_multiply(vector<vector<float> > &A,
-                                       vector<vector<float> > &B);
-vector<vector<float> > matrix_transpose(vector<vector<float> > &matrix);
-vector<float> get_column_vector(vector<vector<float> > &matrix, int column);
-vector<float> get_row_vector(vector<vector<float> > &matrix, int row);
+void print_matrix(vector<vector<double> > &matrix);
+void init_matrix(vector<vector<double> > &matrix, int dimensions);
+vector<vector<double> > matrix_multiply(vector<vector<double> > &A,
+                                       vector<vector<double> > &B);
+vector<vector<double> > matrix_transpose(vector<vector<double> > &matrix);
+vector<double> get_column_vector(vector<vector<double> > &matrix, int column);
+vector<double> get_row_vector(vector<vector<double> > &matrix, int row);
 /* MATRIX HELPER FUNCTIONS END*/
 
 

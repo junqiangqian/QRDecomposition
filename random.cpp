@@ -5,8 +5,8 @@
 #include <iostream>
 #include <cstdlib>
 
-static float random_float(int limit){
-	float ret = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX /
+static double random_double(int limit){
+	double ret = static_cast <double> (rand()) / (static_cast <double> (RAND_MAX /
     limit));
 	return ret;
 }
