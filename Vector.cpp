@@ -22,11 +22,11 @@ double vector_magnitude(vector<double> &vec) {
   return sqrt(norm);
 }
 
-double vector_dot_product(vector<double> &vecA, vector<double> &vecB) {
+float vector_dot_product(vector<double> &vecA, vector<double> &vecB) {
   assert (vecA.size() == vecB.size());
 
   int dimensions = vecA.size();
-  double dp;
+  float dp;
 
   for (int i = 0; i < dimensions; i++) {
     dp += (vecA[i] * vecB[i]);
