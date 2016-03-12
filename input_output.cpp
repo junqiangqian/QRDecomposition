@@ -42,3 +42,28 @@ vector<double> parseLine(string line) {
 
   return result;
 }
+
+/* Writes the eigenvalues and corresponding eigenvectors to file,
+   returns true on success */
+bool write_to_file(vector<vector<double> > &values,
+                   vector<vector<double> > &vectors) {
+  ofstream file("results.txt");
+  if (file.is_open()) {
+    for (int i = 0; i < values.size(); i++) {
+      file << "Eigenvalue " << i + 1 << " is " << values[i][i];
+      file << " Corresponding eigenvector is (";
+      for (int j = 0; j < values.size(); j++) {
+        file << vectors[j][i];
+        j != vectors.size() - 1? file << ", " : file << "";
+      }
+
+      file << ")\n";
+    }
+    return true;
+  } else {
+    cout << "Unable to open the file" << endl;
+    return false;
+  }
+
+
+}
