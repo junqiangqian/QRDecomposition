@@ -7,19 +7,18 @@
 #include <assert.h>
 #include <cstdlib>
 
-using namespace std;
-
-/* Generates random doubles */
-double random_double(int limit);
-
 /* MATRIX HELPER FUNCTIONS */
-void print_matrix(vector<vector<double> > &matrix);
-void init_matrix(vector<vector<double> > &matrix, int dimensions);
-vector<vector<double> > matrix_multiply(vector<vector<double> > &A,
-                                       vector<vector<double> > &B);
-vector<vector<double> > matrix_transpose(vector<vector<double> > &matrix);
-vector<double> get_column_vector(vector<vector<double> > &matrix, int column);
-vector<double> get_row_vector(vector<vector<double> > &matrix, int row);
+void print_matrix(std::vector<std::vector<double> > &matrix);
+void init_matrix(std::vector<std::vector<double> > &matrix, int dimensions);
+std::vector<std::vector<double> > matrix_multiply(
+                                 std::vector<std::vector<double> > &A,
+                                 std::vector<std::vector<double> > &B);
+std::vector<std::vector<double> > matrix_transpose(
+                                  std::vector<std::vector<double> > &matrix);
+std::vector<double> get_column_vector(
+                    std::vector<std::vector<double> > &matrix, int column);
+std::vector<double> get_row_vector(
+                    std::vector<std::vector<double> > &matrix, int row);
 /* MATRIX HELPER FUNCTIONS END*/
 
 

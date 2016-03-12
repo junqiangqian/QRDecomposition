@@ -6,16 +6,16 @@
 #include <cmath>
 #include <assert.h>
 
-using namespace std;
-
 /* VECTOR HELPER FUNCTIONS */
-void print_vector(vector<double> &vec);
-double vector_magnitude(vector<double> &vec);
-double vector_dot_product(vector<double> &vecA, vector<double> &vecB);
-vector<double> vector_add(vector<double> &vecA, vector<double> &vecB);
-vector<double> vector_sub(vector<double> &vecA, vector<double> &vecB);
-vector<double> vector_mul_scalar(vector<double> &vec, double scalar);
-vector<double> vector_div_scalar(vector<double> &vec, double scalar);
+void print_vector(std::vector<double> &vec);
+double vector_magnitude(std::vector<double> &vec);
+double vector_dot_product(std::vector<double> &vecA, std::vector<double> &vecB);
+std::vector<double> vector_add(std::vector<double> &vecA,
+                               std::vector<double> &vecB);
+std::vector<double> vector_sub(std::vector<double> &vecA,
+                               std::vector<double> &vecB);
+std::vector<double> vector_mul_scalar(std::vector<double> &vec, double scalar);
+std::vector<double> vector_div_scalar(std::vector<double> &vec, double scalar);
 /* VECTOR HELPER FUNCTIONS END */
 
 #endif

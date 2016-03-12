@@ -6,12 +6,13 @@
 #include "random.cpp"
 #include "Vector.h"
 #include "Matrix.h"
+#include "input_output.h"
 
 using namespace std;
 
 // #define RANDOM 1
-#define MAX_RAND 100
-#define ITERATION_MAX 1000
+#define MAX_RAND 1000
+#define ITERATION_MAX 10
 
 void generate_symmetric_matrix(vector<vector<double> > &matrix);
 
@@ -20,93 +21,72 @@ void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
                                              vector<vector<double> > &r);
 /* QR FUNCTIONS END */
 
-int main(){
+int main(int argc, char *argv[]){
+
   cout << "QR Decomposition" << endl;
-  cout << "Enter 0 for random matrix, 1 for file\n";
-  int n;
-  cin >> n;
 
-  while (n > 1) {
-    cout << "Enter a valid number" << endl;
-    cin >> n;
-  }
+  vector<vector<double> > matrix;
+  int dimensions = 0;
 
-  srand(time(NULL));
-  int dimensions;
-  #ifdef RANDOM
-  dimensions = rand() % 10 + 2;
-  #endif
-
-  dimensions = 3;
-
-  // cout << dimensions << endl;
-
-  if (n == 0) {
-    vector<vector<double> > matrix;
+  if (argc == 1) {
+    cout << "Generating random symmetric matrix..." << endl;
+    /* Set random seed to the current time */
+    /*srand(time(NULL));
+    dimensions = 3;
     init_matrix(matrix, dimensions);
-    generate_symmetric_matrix(matrix);
-    /*vector<double> a;
+    generate_symmetric_matrix(matrix); */
+
+    dimensions = 2;
+
+    vector<double> a;
     vector<double> b;
-    vector<double> c;
 
-    a.push_back(1);
+    a.push_back(7);
     a.push_back(2);
-    a.push_back(4);
-
-    b.push_back(0);
-    b.push_back(0);
-    b.push_back(5);
-
-    c.push_back(0);
-    c.push_back(3);
-    c.push_back(6);
 
     matrix.push_back(a);
-    matrix.push_back(b);
-    matrix.push_back(c);*/
-    /*a.push_back(7);
-    a.push_back(2);
+
     b.push_back(2);
     b.push_back(4);
-    matrix.push_back(a);
-    matrix.push_back(b); */
-    print_matrix(matrix);
-    cout << endl;
-    /* vector<double> column1 = get_column_vector(matrix, 0);
-    vector<double> column2 = get_column_vector(matrix, 1);
-    vector<double> column3 = get_column_vector(matrix, 2);
-    print_vector(column1);
-    print_vector(column2);
-    print_vector(column3); */
-    vector<vector<double> > Q;
-    vector<vector<double> > R;
-    init_matrix(Q, dimensions);
-    init_matrix(R, dimensions);
-    qr_decompose(matrix, Q, R);
-    cout << "Matrix Q is..." << endl;
-    print_matrix(Q);
-    cout << "Matrix R is..." << endl;
-    print_matrix(R);
 
-    cout << "=======QR ITERATION TEST =========" << endl;
-    vector<vector<double> > A_i;
-    vector<vector<double> > Q_i = Q;
-
-
-    int iterations = 0;
-
-    while (iterations < ITERATION_MAX /* && within_tolerance() */) {
-      A_i = matrix_multiply(R, Q);
-      qr_decompose(A_i, Q, R);
-      Q_i = matrix_multiply(Q_i, Q);
-      iterations++;
-    }
-
-    print_matrix(A_i);
-    print_matrix(Q_i);
-
-    cout << "==================================" << endl;
+    matrix.push_back(b); 
+  } else if (argc == 2) {
+    cout << "Using the .txt provided to produce matrix..." << endl;
+    matrix = load_matrix(argv[1]);
+    dimensions = matrix.size();
+  } else {
+    cout << "ERROR : Invalid number of arguments, refer to README" << endl;
+    exit(EXIT_FAILURE);
   }
+
+  print_matrix(matrix);
+  vector<vector<double> > Q;
+  vector<vector<double> > R;
+  init_matrix(Q, dimensions);
+  init_matrix(R, dimensions);
+  qr_decompose(matrix, Q, R);
+  cout << "Matrix Q is..." << endl;
+  print_matrix(Q);
+  cout << "Matrix R is..." << endl;
+  print_matrix(R);
+
+  cout << "======= QR ITERATION TEST =========" << endl;
+  vector<vector<double> > A_i;
+  vector<vector<double> > Q_i = Q;
+
+  int iterations = 0;
+
+  while (iterations < ITERATION_MAX /* && within_tolerance() */ ) {
+    A_i = matrix_multiply(R, Q);
+    qr_decompose(A_i, Q, R);
+    Q_i = matrix_multiply(Q_i, Q);
+    iterations++;
+  }
+
+  print_matrix(A_i);
+  print_matrix(Q_i);
+
+  cout << "==================================" << endl;
 }
 
 void generate_symmetric_matrix(vector<vector<double> > &matrix) {
