@@ -6,6 +6,7 @@
 #include <cmath>
 #include <assert.h>
 #include <cstdlib>
+#include <cstdio>
 
 /* MATRIX HELPER FUNCTIONS */
 void print_matrix(std::vector<std::vector<double> > &matrix);

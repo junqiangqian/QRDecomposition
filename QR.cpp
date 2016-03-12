@@ -7,21 +7,22 @@
 #include "Vector.h"
 #include "Matrix.h"
 #include "input_output.h"
+#include "QRHelper.h"
 
 using namespace std;
 
-// #define RANDOM 1
-#define MAX_RAND 1000
-#define ITERATION_MAX 100
+#define MAX_RAND 100
+#define MAX_DIMENSION 10
+#define ITERATION_MAX 10000
 #define THRESHOLD 1e-5
 
 void generate_symmetric_matrix(vector<vector<double> > &matrix);
-void converge_to_zero(vector<vector<double> > &matrix, double threshold);
-bool all_nd_zero(vector<vector<double> > &matrix);
 
-/* QR FUNCTIONS */
+/* QR FUNCTIONS
 void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
                                              vector<vector<double> > &r);
+void converge_to_zero(vector<vector<double> > &matrix, double threshold);
+bool all_nd_zero(vector<vector<double> > &matrix);
 /* QR FUNCTIONS END */
 
 int main(int argc, char *argv[]){
@@ -35,24 +36,10 @@ int main(int argc, char *argv[]){
     cout << "Generating random symmetric matrix..." << endl;
     /* Set random seed to the current time */
     srand(time(NULL));
-    dimensions = 3;
+    // dimensions = rand() % MAX_DIMENSION + 2;
+    dimensions = 4;
     init_matrix(matrix, dimensions);
     generate_symmetric_matrix(matrix);
-
-    /*dimensions = 2;
-
-    vector<double> a;
-    vector<double> b;
-
-    a.push_back(7);
-    a.push_back(2);
-
-    matrix.push_back(a);
-
-    b.push_back(2);
-    b.push_back(4);
-
-    matrix.push_back(b); */
   } else if (argc == 2) {
     cout << "Using the .txt provided to produce matrix..." << endl;
     matrix = load_matrix(argv[1]);
@@ -78,14 +65,6 @@ int main(int argc, char *argv[]){
   vector<vector<double> > Q_i = Q;
 
   int iterations = 0;
-
-  /* while (iterations < ITERATION_MAX && !all_nd_zero(A_i)) {
-    A_i = matrix_multiply(R, Q);
-    qr_decompose(A_i, Q, R);
-    Q_i = matrix_multiply(Q_i, Q);
-    converge_to_zero(A_i, 1e-5);
-    iterations++;
-  } */
 
   do {
     A_i = matrix_multiply(R, Q);
@@ -125,7 +104,7 @@ void generate_symmetric_matrix(vector<vector<double> > &matrix) {
   }
 }
 
-void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
+/*void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
                                              vector<vector<double> > &r) {
   int dimensions = u.size();
 
@@ -143,22 +122,22 @@ void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
     q[i] = q_i;
   }
   /* Transpose to transform the orthonormal row vectors to orthonormal column
-     vectors */
+     vectors
   q = matrix_transpose(q);
-}
+} */
 
 /* Given a threshold, if a non-diagonal element is between the negative of the
-   threshold and the threshold, then round that element to zero */
+   threshold and the threshold, then round that element to zero
 void converge_to_zero(vector<vector<double> > &matrix, double threshold) {
   for (int i = 0; i < matrix.size(); i++) {
     for (int j = i + 1; j < matrix[0].size(); j++) {
       if (abs(matrix[i][j]) < threshold) matrix[i][j] = 0;
     }
   }
-}
+} */
 
 /* Returns true iff all non diagonal elements are zero hence no more iterations
-   are required since the matrix is already diagonal */
+   are required since the matrix is already diagonal
 bool all_nd_zero(vector<vector<double> > &matrix) {
   for (int i = 0; i < matrix.size(); i++) {
     for (int j = i + 1; j < matrix[0].size(); j++) {
@@ -166,4 +145,4 @@ bool all_nd_zero(vector<vector<double> > &matrix) {
     }
   }
   return true;
-}
+} */

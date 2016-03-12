@@ -8,7 +8,8 @@ void print_matrix(vector<vector<double> > &matrix) {
 
   for (int i = 0; i < dimensions; i++) {
     for (int j = 0; j < dimensions; j++) {
-      cout << matrix[i][j] << "\t";
+      printf("%.5f ", matrix[i][j]);
+      //cout << matrix[i][j] << " ";
     }
     cout << endl;
   }
