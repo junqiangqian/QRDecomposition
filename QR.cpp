@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
     /* Set random seed to the current time */
     srand(time(NULL));
     dimensions = rand() % MAX_DIMENSION + 2;
-    init_matrix(matrix, dimensions);
+    init_matrix(matrix, dimensions, dimensions);
     generate_symmetric_matrix(matrix, MAX_RAND);
   } else if (argc == 2) {
     cout << "Using the .txt provided to produce matrix..." << endl;

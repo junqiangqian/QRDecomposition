@@ -26,8 +26,8 @@ void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
 
 void perform_QR(vector<vector<double> > &matrix, vector<vector<double> > &Q,
                 vector<vector<double> > &R, int dimensions) {
-  init_matrix(Q, dimensions);
-  init_matrix(R, dimensions);
+  init_matrix(Q, dimensions, dimensions);
+  init_matrix(R, dimensions, dimensions);
   qr_decompose(matrix, Q, R);
   cout << "Matrix Q is..." << endl;
   print_matrix(Q);

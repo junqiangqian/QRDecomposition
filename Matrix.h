@@ -10,7 +10,7 @@
 
 /* MATRIX HELPER FUNCTIONS */
 void print_matrix(std::vector<std::vector<double> > &matrix);
-void init_matrix(std::vector<std::vector<double> > &matrix, int dimensions);
+void init_matrix(std::vector<std::vector<double> > &matrix, int rows, int cols);
 void generate_symmetric_matrix(std::vector<std::vector<double> > &matrix,
                                int limit);
 std::vector<std::vector<double> > matrix_multiply(
