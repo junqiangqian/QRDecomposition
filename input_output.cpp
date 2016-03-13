@@ -53,10 +53,9 @@ bool write_to_file(vector<vector<double> > &values,
       file << "Eigenvalue " << i + 1 << " is " << values[i][i];
       file << " Corresponding eigenvector is (";
       for (int j = 0; j < values.size(); j++) {
-        file << vectors[j][i];
+        file << setprecision(4) << vectors[j][i];
         j != vectors.size() - 1? file << ", " : file << "";
       }
-
       file << ")\n";
     }
     return true;
@@ -64,6 +63,4 @@ bool write_to_file(vector<vector<double> > &values,
     cout << "Unable to open the file" << endl;
     return false;
   }
-
-
 }

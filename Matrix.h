@@ -11,6 +11,8 @@
 /* MATRIX HELPER FUNCTIONS */
 void print_matrix(std::vector<std::vector<double> > &matrix);
 void init_matrix(std::vector<std::vector<double> > &matrix, int dimensions);
+void generate_symmetric_matrix(std::vector<std::vector<double> > &matrix,
+                               int limit);
 std::vector<std::vector<double> > matrix_multiply(
                                  std::vector<std::vector<double> > &A,
                                  std::vector<std::vector<double> > &B);

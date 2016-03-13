@@ -24,23 +24,65 @@ void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
   q = matrix_transpose(q);
 }
 
-/* Given a threshold, if a non-diagonal element is between the negative of the
-   threshold and the threshold, then round that element to zero */
-void converge_to_zero(vector<vector<double> > &matrix, double threshold) {
-  for (int i = 0; i < matrix.size(); i++) {
-    for (int j = i + 1; j < matrix[0].size(); j++) {
-      if (abs(matrix[i][j]) < threshold) matrix[i][j] = 0;
-    }
-  }
+void perform_QR(vector<vector<double> > &matrix, vector<vector<double> > &Q,
+                vector<vector<double> > &R, int dimensions) {
+  init_matrix(Q, dimensions);
+  init_matrix(R, dimensions);
+  qr_decompose(matrix, Q, R);
+  cout << "Matrix Q is..." << endl;
+  print_matrix(Q);
+  cout << "Matrix R is..." << endl;
+  print_matrix(R);
 }
 
-/* Returns true iff all non diagonal elements are zero hence no more iterations
-   are required since the matrix is already diagonal */
-bool all_nd_zero(vector<vector<double> > &matrix) {
-  for (int i = 0; i < matrix.size(); i++) {
-    for (int j = i + 1; j < matrix[0].size(); j++) {
-      if (matrix[i][j] != 0) return false;
+
+/* Compares two matrices and checks if values change signficantly, if they do
+   not returns true and thus no more iterations are required */
+bool compare_matrices(vector<vector<double> > &before,
+                      vector<vector<double> > &after, double threshold) {
+  if (before.size() == 0) return false;
+  assert (before.size() == after.size());
+  assert (before[0].size() == after[0].size());
+
+  for (int i = 0; i < before.size(); i++) {
+    for (int j = 0; j < before[0].size(); j++) {
+      double difference = abs(after[i][j] - before[i][j]);
+      if (difference > threshold) {
+        return false;
+      }
     }
   }
   return true;
+}
+
+void qr_iterate(vector<vector<double> > &Q, vector<vector<double> > &R,
+                double threshold, int max_iterations) {
+  cout << "======= QR ITERATIONS=========" << endl;
+
+  vector<vector<double> > A_i;
+  vector<vector<double> > Q_i = Q;
+
+  vector<vector<double> > prev;
+
+  int iterations = 0;
+
+  do {
+    prev = A_i;
+    A_i = matrix_multiply(R, Q);
+    qr_decompose(A_i, Q, R);
+    Q_i = matrix_multiply(Q_i, Q);
+    iterations++;
+  } while (iterations < max_iterations && !compare_matrices(prev, A_i,
+                                                            threshold));
+  print_matrix(A_i);
+  print_matrix(Q_i);
+
+  cout << "Computation finished after " << iterations << " iterations" << endl;
+
+  cout << "==================================" << endl;
+
+  bool success = write_to_file(A_i, Q_i);
+  if (!success) {
+    cout << "Error in writing to file" << endl;
+  }
 }

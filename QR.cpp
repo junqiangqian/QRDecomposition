@@ -3,7 +3,6 @@
 #include <vector>
 #include <cmath>
 #include <assert.h>
-#include "random.cpp"
 #include "Vector.h"
 #include "Matrix.h"
 #include "input_output.h"
@@ -11,19 +10,10 @@
 
 using namespace std;
 
-#define MAX_RAND 100
+#define MAX_RAND 50
 #define MAX_DIMENSION 10
 #define ITERATION_MAX 10000
 #define THRESHOLD 1e-5
-
-void generate_symmetric_matrix(vector<vector<double> > &matrix);
-
-/* QR FUNCTIONS
-void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
-                                             vector<vector<double> > &r);
-void converge_to_zero(vector<vector<double> > &matrix, double threshold);
-bool all_nd_zero(vector<vector<double> > &matrix);
-/* QR FUNCTIONS END */
 
 int main(int argc, char *argv[]){
 
@@ -36,10 +26,9 @@ int main(int argc, char *argv[]){
     cout << "Generating random symmetric matrix..." << endl;
     /* Set random seed to the current time */
     srand(time(NULL));
-    // dimensions = rand() % MAX_DIMENSION + 2;
-    dimensions = 4;
+    dimensions = rand() % MAX_DIMENSION + 2;
     init_matrix(matrix, dimensions);
-    generate_symmetric_matrix(matrix);
+    generate_symmetric_matrix(matrix, MAX_RAND);
   } else if (argc == 2) {
     cout << "Using the .txt provided to produce matrix..." << endl;
     matrix = load_matrix(argv[1]);
@@ -52,97 +41,6 @@ int main(int argc, char *argv[]){
   print_matrix(matrix);
   vector<vector<double> > Q;
   vector<vector<double> > R;
-  init_matrix(Q, dimensions);
-  init_matrix(R, dimensions);
-  qr_decompose(matrix, Q, R);
-  cout << "Matrix Q is..." << endl;
-  print_matrix(Q);
-  cout << "Matrix R is..." << endl;
-  print_matrix(R);
-
-  cout << "======= QR ITERATION TEST =========" << endl;
-  vector<vector<double> > A_i;
-  vector<vector<double> > Q_i = Q;
-
-  int iterations = 0;
-
-  do {
-    A_i = matrix_multiply(R, Q);
-    qr_decompose(A_i, Q, R);
-    Q_i = matrix_multiply(Q_i, Q);
-    converge_to_zero(A_i, THRESHOLD);
-    iterations++;
-  } while (iterations < ITERATION_MAX && !all_nd_zero(A_i));
-
-  cout << iterations << endl;
-
-  print_matrix(A_i);
-  print_matrix(Q_i);
-
-  cout << "==================================" << endl;
-
-  bool success = write_to_file(A_i, Q_i);
-
-  cout << success << endl;
-
+  perform_QR(matrix, Q, R, dimensions);
+  qr_iterate(Q, R, THRESHOLD, ITERATION_MAX);
 }
-
-void generate_symmetric_matrix(vector<vector<double> > &matrix) {
-
-  int dimensions = matrix.size();
-
-  /* Assign random values to leading diagonal */
-  for (int i = 0; i < dimensions; i++){
-    matrix[i][i] = random_double(MAX_RAND);
-  }
-
-  for (int i = 0; i < dimensions / 2 + 1; i++){
-    for (int j = i + 1; j < dimensions; j++){
-      matrix[i][j] = random_double(MAX_RAND);
-      matrix[j][i] = matrix[i][j];
-    }
-  }
-}
-
-/*void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
-                                             vector<vector<double> > &r) {
-  int dimensions = u.size();
-
-  for (int i = 0; i < dimensions; i++) {
-    vector<double> u_i = get_column_vector(u, i);
-    vector<double> q_i = u_i;
-    for (int j = 0; j < i; j++) {
-      vector<double> q_j = get_row_vector(q, j);
-      r[j][i] = vector_dot_product(q_j, u_i);
-      vector<double> temp = vector_mul_scalar(q_j, r[j][i]);
-      q_i = vector_sub(q_i, temp);
-    }
-    r[i][i] = vector_magnitude(q_i);
-    q_i = vector_div_scalar(q_i, r[i][i]);
-    q[i] = q_i;
-  }
-  /* Transpose to transform the orthonormal row vectors to orthonormal column
-     vectors
-  q = matrix_transpose(q);
-} */
-
-/* Given a threshold, if a non-diagonal element is between the negative of the
-   threshold and the threshold, then round that element to zero
-void converge_to_zero(vector<vector<double> > &matrix, double threshold) {
-  for (int i = 0; i < matrix.size(); i++) {
-    for (int j = i + 1; j < matrix[0].size(); j++) {
-      if (abs(matrix[i][j]) < threshold) matrix[i][j] = 0;
-    }
-  }
-} */
-
-/* Returns true iff all non diagonal elements are zero hence no more iterations
-   are required since the matrix is already diagonal
-bool all_nd_zero(vector<vector<double> > &matrix) {
-  for (int i = 0; i < matrix.size(); i++) {
-    for (int j = i + 1; j < matrix[0].size(); j++) {
-      if (matrix[i][j] != 0) return false;
-    }
-  }
-  return true;
-} */

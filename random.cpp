@@ -2,7 +2,6 @@
 #include <vector>
 #include <cstdlib>
 #include <iostream>
-#include <cstdlib>
 
 /* Returns a random double between -limit and limit */
 static double random_double(int limit){

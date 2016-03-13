@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <iomanip>
 
 /* Loads the file provided and returns the matrix the file contains */
 std::vector<std::vector<double> > load_matrix(const char *fileName);

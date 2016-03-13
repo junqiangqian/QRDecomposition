@@ -2,6 +2,15 @@
 
 using namespace std;
 
+/* Returns a random double between -limit and limit */
+static double random_double(int limit){
+  int a = -limit;
+  double random = ((double) rand()) / (double) RAND_MAX;
+  double diff = limit - a;
+  double r = random * diff;
+  return a + r;
+}
+
 void print_matrix(vector<vector<double> > &matrix) {
 
   int dimensions = matrix.size();
@@ -9,7 +18,6 @@ void print_matrix(vector<vector<double> > &matrix) {
   for (int i = 0; i < dimensions; i++) {
     for (int j = 0; j < dimensions; j++) {
       printf("%.5f ", matrix[i][j]);
-      //cout << matrix[i][j] << " ";
     }
     cout << endl;
   }
@@ -23,6 +31,23 @@ void init_matrix(vector<vector<double> > &matrix, int dimensions) {
       row.push_back(0);
     }
     matrix.push_back(row);
+  }
+}
+
+void generate_symmetric_matrix(vector<vector<double> > &matrix, int limit) {
+
+  int dimensions = matrix.size();
+
+  /* Assign random values to leading diagonal */
+  for (int i = 0; i < dimensions; i++){
+    matrix[i][i] = random_double(limit);
+  }
+
+  for (int i = 0; i < dimensions / 2 + 1; i++){
+    for (int j = i + 1; j < dimensions; j++){
+      matrix[i][j] = random_double(limit);
+      matrix[j][i] = matrix[i][j];
+    }
   }
 }
 
