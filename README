@@ -16,3 +16,19 @@
        ii) Each row is separated by a new line
     NB : See test_matrices/valid folder for examples of valid files that can be parsed into matrices. Note that the matrix must be symmetrical otherwise an
     error will be thrown.
+3) The program will write the eigenvalues/eigenvector pairs in a text file
+   called results.txt. Note that this file is overwritten if a new matrix is
+   generated.
+4) Call make clean to clear up the directory and remove the results.txt file.
+
+A note about the constants in QR.cpp:
+  1) MAX_DIMENSION alters the maximum dimension of the matrix generated, given
+     MAX_DIMENSION = x, then a matrix of dimension between 2 and (x + 2) will be
+     generated.
+  2) ITERATION_MAX is the maximum number of iterations the QR iteration will do
+     before terminating.
+  3) THRESHOLD is the maximum difference between elements at the same position
+     in two consecutive iterations of the eigenvalue matrices (e.g. first
+     iteration with second iteration, fifth with sixth iteration, etc), the smaller the threshold, the more iterations will be performed (but the
+     program will stop once it reaches ITERATION_MAX regardless if the
+     threshold is met).
