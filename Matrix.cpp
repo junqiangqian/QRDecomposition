@@ -76,20 +76,15 @@ vector<vector<double> > matrix_transpose(vector<vector<double> > &matrix) {
   vector<vector<double> > transpose;
   int rows = matrix.size();
   int columns = matrix[0].size();
-  cout << rows << ", " << columns << endl;
-  init_matrix(transpose, rows, columns);
+  
+  /* Transpose will have "columns" rows and "rows" columns*/
+  init_matrix(transpose, columns, rows);
 
-  /* Leading diagonal is preserved */
-  /*for (int i = 0; i < dimensions; i++){
-    transpose[i][i] = matrix[i][i];
-  }*/
-
-  /* Swap remaining elements with the elements in "mirrored" position with
-     respect to the leading diagonal */
+  /* Set transpose's element with its symmetrical element in the original
+     matrix */
   for (int i = 0; i < columns; i++) {
     for (int j = 0; j < rows; j++) {
       transpose[i][j] = matrix[j][i];
-      transpose[j][i] = matrix[i][j];
     }
   }
   return transpose;
