@@ -1,0 +1,18 @@
+== QR Decomposition and Eigenvalue/Eigenvector Solver for symmetric matrices ==
+                           by Junqiang Qian
+
+1) To compile the program, use the Makefile provided by entering "make" on the
+   terminal.
+2) The program is called qr, you can either use no arguments (i.e. just return
+   "./qr") or use one argument ("./qr FILE_NAME") into the terminal.
+  A) No arguments: The program will generate a random symmetric matrix of
+     random dimensions (between 2 to 12 as default) containing random doubles
+     varying from -MAX_RAND to MAX_RAND.
+  B) One argument: The program will use the .txt file specified as the argument
+     to transform that into a matrix. The text file MUST take the following
+     format:
+
+       i) Each element in a row is separated by spaces
+       ii) Each row is separated by a new line
+    NB : See test_matrices/valid folder for examples of valid files that can be parsed into matrices. Note that the matrix must be symmetrical otherwise an
+    error will be thrown.

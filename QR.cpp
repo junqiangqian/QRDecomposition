@@ -48,4 +48,5 @@ int main(int argc, char *argv[]){
   vector<vector<double> > R;
   perform_QR(matrix, Q, R, dimensions);
   qr_iterate(Q, R, THRESHOLD, ITERATION_MAX);
+  exit(EXIT_SUCCESS);
 }
