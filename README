@@ -6,7 +6,7 @@
 2) The program is called qr, you can either use no arguments (i.e. just return
    "./qr") or use one argument ("./qr FILE_NAME") into the terminal.
   A) No arguments: The program will generate a random symmetric matrix of
-     random dimensions (between 2 to 12 as default) containing random doubles
+     random dimensions (between 2 to 11 as default) containing random doubles
      varying from -MAX_RAND to MAX_RAND.
   B) One argument: The program will use the .txt file specified as the argument
      to transform that into a matrix. The text file MUST take the following
@@ -23,7 +23,7 @@
 
 A note about the constants in QR.cpp:
   1) MAX_DIMENSION alters the maximum dimension of the matrix generated, given
-     MAX_DIMENSION = x, then a matrix of dimension between 2 and (x + 2) will be
+     MAX_DIMENSION = x, then a matrix of dimension between 2 and (x + 1) will be
      generated.
   2) ITERATION_MAX is the maximum number of iterations the QR iteration will do
      before terminating.

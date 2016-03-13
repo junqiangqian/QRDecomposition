@@ -29,6 +29,11 @@ int main(int argc, char *argv[]){
     dimensions = rand() % MAX_DIMENSION + 2;
     init_matrix(matrix, dimensions, dimensions);
     generate_symmetric_matrix(matrix, MAX_RAND);
+    if (!check_symmetric(matrix)) {
+      print_matrix(matrix);
+      cout << "ERROR: Matrix supplied is not symmetric, try again" << endl;
+      exit(EXIT_FAILURE);
+    }
   } else if (argc == 2) {
     cout << "Using the .txt provided to produce matrix..." << endl;
     matrix = load_matrix(argv[1]);
