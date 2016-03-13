@@ -39,14 +39,9 @@ void generate_symmetric_matrix(vector<vector<double> > &matrix, int limit) {
 
   int dimensions = matrix.size();
 
-  /* Assign random values to leading diagonal */
-  for (int i = 0; i < dimensions; i++){
-    matrix[i][i] = random_double(limit);
-  }
-
   /* Assign values to symmetrical positions in the matrix */
-  for (int i = 0; i < dimensions / 2 + 1; i++){
-    for (int j = i + 1; j < dimensions; j++){
+  for (int i = 0; i < dimensions; i++){
+    for (int j = 0; j < dimensions; j++) {
       matrix[i][j] = random_double(limit);
       matrix[j][i] = matrix[i][j];
     }
