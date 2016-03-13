@@ -21,7 +21,7 @@
    generated.
 4) Call make clean to clear up the directory and remove the results.txt file.
 
-A note about the constants in QR.cpp:
+A note about the #define macros in QR.cpp:
   1) MAX_DIMENSION alters the maximum dimension of the matrix generated, given
      MAX_DIMENSION = x, then a matrix of dimension between 2 and (x + 1) will be
      generated.
