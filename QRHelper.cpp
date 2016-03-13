@@ -2,6 +2,16 @@
 
 using namespace std;
 
+bool check_symmetric(std::vector<std::vector<double> > &matrix) {
+  int dimensions = matrix.size();
+  for (int i = 0; i < dimensions; i++) {
+    for (int j = 0; j < dimensions; j++) {
+      if (matrix[i][j] != matrix[j][i]) return false;
+    }
+  }
+  return true;
+}
+
 void qr_decompose(vector<vector<double> > &u, vector<vector<double> > &q,
                                              vector<vector<double> > &r) {
   int dimensions = u.size();

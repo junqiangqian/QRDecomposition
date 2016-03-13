@@ -7,6 +7,8 @@
 #include "input_output.h"
 #include <assert.h>
 
+bool check_symmetric(std::vector<std::vector<double> > &matrix);
+
 void qr_decompose(std::vector<std::vector<double> > &u,
                   std::vector<std::vector<double> > &q,
                   std::vector<std::vector<double> > &r);

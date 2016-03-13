@@ -32,6 +32,11 @@ int main(int argc, char *argv[]){
   } else if (argc == 2) {
     cout << "Using the .txt provided to produce matrix..." << endl;
     matrix = load_matrix(argv[1]);
+    if (!check_symmetric(matrix)) {
+      print_matrix(matrix);
+      cout << "ERROR: Matrix supplied is not symmetric, try again" << endl;
+      exit(EXIT_FAILURE);
+    }
     dimensions = matrix.size();
   } else {
     cout << "ERROR : Invalid number of arguments, refer to README" << endl;
