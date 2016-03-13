@@ -26,7 +26,7 @@ float vector_dot_product(vector<double> &vecA, vector<double> &vecB) {
   assert (vecA.size() == vecB.size());
 
   int dimensions = vecA.size();
-  float dp;
+  float dp = 0;
 
   for (int i = 0; i < dimensions; i++) {
     dp += (vecA[i] * vecB[i]);

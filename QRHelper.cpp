@@ -45,8 +45,6 @@ void perform_QR(vector<vector<double> > &matrix, vector<vector<double> > &Q,
   print_matrix(R);
 }
 
-/* Compares two matrices and checks if values change signficantly, if they do
-   not returns true and thus no more iterations are required */
 bool compare_matrices(vector<vector<double> > &before,
                       vector<vector<double> > &after, double threshold) {
   /* Initially before is empty -> size = 0 but we still wish to iterate in
@@ -65,11 +63,6 @@ bool compare_matrices(vector<vector<double> > &before,
   return true;
 }
 
-/* Performs QR iteration, using Q, R generated from qr_decompose, takes in
-   a threshold which is used in compare_matrices and a maximum number of
-   iterations to do, terminates when either iterations has passed or further
-   iterations do not make a significant change (that is > threshold) to the
-   matrix */
 void qr_iterate(vector<vector<double> > &Q, vector<vector<double> > &R,
                 double threshold, int max_iterations) {
   cout << "======= QR ITERATIONS=========" << endl;
