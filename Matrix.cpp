@@ -44,6 +44,7 @@ void generate_symmetric_matrix(vector<vector<double> > &matrix, int limit) {
     matrix[i][i] = random_double(limit);
   }
 
+  /* Assign values to symmetrical positions in the matrix */
   for (int i = 0; i < dimensions / 2 + 1; i++){
     for (int j = i + 1; j < dimensions; j++){
       matrix[i][j] = random_double(limit);
@@ -56,10 +57,13 @@ vector<vector<double> > matrix_multiply(vector<vector<double> > &A,
                                        vector<vector<double> > &B) {
   assert(A[0].size() == B.size()); /* Columns of A = Rows of B */
   vector<vector<double> > result;
-  init_matrix(result, A.size(), B[0].size());
 
+  /* Product of A and B will have same number of rows as A and same number of
+     columns as B */
   int rows = A.size();
   int columns = B[0].size();
+
+  init_matrix(result, rows, columns);
 
   for (int i = 0; i < rows; i++){
     for (int j = 0; j < columns; j++) {
@@ -76,7 +80,7 @@ vector<vector<double> > matrix_transpose(vector<vector<double> > &matrix) {
   vector<vector<double> > transpose;
   int rows = matrix.size();
   int columns = matrix[0].size();
-  
+
   /* Transpose will have "columns" rows and "rows" columns*/
   init_matrix(transpose, columns, rows);
 
